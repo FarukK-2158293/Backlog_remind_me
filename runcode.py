@@ -1,5 +1,7 @@
 import discord
 import asyncio
+from keep_alive import keep_alive
+import os
 
 intents = discord.Intents.default()
 intents.members = True
@@ -10,8 +12,8 @@ client = discord.Client(intents=intents)
 async def my_background_task():
     await client.wait_until_ready()
     while not client.is_closed():
-        channel = client.get_channel(CHANNEL_NAME)  # replace with your channel ID
-        await channel.send("MESSAGE")  # replace with your reminder message
+        channel = client.get_channel(1088152096550948905)  # replace with your channel ID
+        await channel.send("Hello you need to update your backloge <@&1090682271494852609> :skull:")  # replace with your reminder message
         await asyncio.sleep(86400)  # 24 hours in seconds
 
 
@@ -30,4 +32,6 @@ async def on_message(message):
         await message.channel.send(f"Reminder set: {reminder_message}")
 
 
-client.run("TOKEN")
+Token = os.environ.get("KEY")
+keep_alive()
+client.run(Token)
